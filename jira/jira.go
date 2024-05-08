@@ -4,12 +4,11 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
 
-	"github.com/tomhjp/gh-action-jira/config"
+	"github.com/hashicorp/gh-action-jira/config"
 )
 
 func DoRequest(config config.JiraConfig, method, path string, query url.Values, body io.Reader) ([]byte, error) {
@@ -27,7 +26,7 @@ func DoRequest(config config.JiraConfig, method, path string, query url.Values, 
 	}
 	defer resp.Body.Close()
 
-	bytes, err := ioutil.ReadAll(resp.Body)
+	bytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
