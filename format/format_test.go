@@ -1,7 +1,7 @@
 package format
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -12,7 +12,7 @@ import (
 
 func TestMDToJira(t *testing.T) {
 	const testFolder = "testdata"
-	files, err := ioutil.ReadDir(testFolder)
+	files, err := os.ReadDir(testFolder)
 	require.NoError(t, err)
 	for _, file := range files {
 		fileName := file.Name()
@@ -21,9 +21,9 @@ func TestMDToJira(t *testing.T) {
 		}
 
 		t.Run(fileName, func(t *testing.T) {
-			input, err := ioutil.ReadFile(filepath.Join(testFolder, fileName))
+			input, err := os.ReadFile(filepath.Join(testFolder, fileName))
 			require.NoError(t, err)
-			expected, err := ioutil.ReadFile(filepath.Join(testFolder, fileName[:len(fileName)-3]+".jira"))
+			expected, err := os.ReadFile(filepath.Join(testFolder, fileName[:len(fileName)-3]+".jira"))
 			require.NoError(t, err)
 
 			output, err := GitHubToJira(string(input))

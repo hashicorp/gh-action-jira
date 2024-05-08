@@ -1,4 +1,4 @@
-module github.com/tomhjp/gh-action-jira
+module github.com/hashicorp/gh-action-jira
 
 go 1.14
 

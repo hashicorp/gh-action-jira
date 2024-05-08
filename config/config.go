@@ -2,7 +2,6 @@ package config
 
 import (
 	"errors"
-	"io/ioutil"
 	"os"
 	"path"
 
@@ -16,7 +15,7 @@ const (
 )
 
 var (
-	readFile = ioutil.ReadFile
+	readFile = os.ReadFile
 	getenv   = os.Getenv
 )
 
